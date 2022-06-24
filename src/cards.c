@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Standard Fischer-Yates algorithm.
+// Standard Fisher-Yates algorithm, using a non cryptographically-secure RNG.
 void shuffle_cards(card *const deck, const size_t num_cards)
 {
-    for (int i = num_cards; i; i--)
+    for (int i = num_cards - 1; i > 1; i--)
     {
         card temp = deck[i];
         deck[i] = deck[rand() % i];
@@ -13,7 +13,7 @@ void shuffle_cards(card *const deck, const size_t num_cards)
     }
 }
 
-// Draw the card num_from_the_top cards from the top of the deck.
+// Draw the card `num_from_the_top cards` from the top of the deck.
 
 card draw_card(const card *deck, const size_t num_cards, const size_t num_from_the_top)
 {
@@ -33,7 +33,7 @@ void write_cards(const card *deck, const size_t num_cards, FILE *fp)
     }
 }
 
-// Read num_cards cards from fp.
+// Read `num_cards` cards from `fp`.
 
 card *read_cards(FILE *fp, const size_t num_cards)
 {
